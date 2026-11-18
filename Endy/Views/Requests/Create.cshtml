@@ -1,0 +1,4 @@
+@model Endy.Models.AccessRequestInput
+@{ ViewData["Title"] = "New Access Request"; }
+<div class="section-heading"><div><h2>New access request</h2><p class="muted">Provide the visitor details below. All fields are required.</p></div></div><div class="form-card"><form method="post"><div asp-validation-summary="ModelOnly" class="text-danger"></div><partial name="_Form" model="Model"/><div class="form-actions"><a asp-action="Index" class="btn btn-light">Cancel</a><button class="btn btn-primary">Submit request →</button></div></form></div>
+@section Scripts { <partial name="_ValidationScriptsPartial"/> }

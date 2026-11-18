@@ -1,0 +1,13 @@
+@model IReadOnlyList<Endy.Models.AppNotification>
+@{ ViewData["Title"] = "Notifications"; }
+<div class="section-heading"><div><h2>Notifications</h2><p class="muted">Stay up to date with request activity.</p></div></div>
+<div class="notification-list">
+@if (!Model.Any()) { <div class="empty-state">You are all caught up.</div> }
+@foreach (var n in Model) {
+    if (n.AccessRequestId is int requestId) {
+        <a class="notification-item" asp-controller="Requests" asp-action="Details" asp-route-id="@requestId"><div class="notification-icon">♢</div><div><strong>@n.Title</strong><p>@n.Message</p><small>@(Endy.Models.DateTimeDisplay.ToLocal(n.CreatedAt).ToString("dd MMM yyyy, HH:mm"))</small><span class="notification-link-label">Open access request →</span></div></a>
+    } else {
+        <div class="notification-item"><div class="notification-icon">♢</div><div><strong>@n.Title</strong><p>@n.Message</p><small>@(Endy.Models.DateTimeDisplay.ToLocal(n.CreatedAt).ToString("dd MMM yyyy, HH:mm"))</small></div></div>
+    }
+}
+</div>
